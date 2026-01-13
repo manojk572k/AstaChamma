@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashtachamma Board</title>
+
+  <link rel="stylesheet" href="index.css" />
+  <script src="index.js" defer></script>
+</head>
+
+<body>
+  <main class="app">
+    <header class="header">
+      <h1 class="title">ASHTACHAMMA</h1>
+      <p class="subtitle">Roll → click token (Start/Move). Extra turn on 4/8 or capture. Exact finish.</p>
+    </header>
+
+    <section class="arena">
+      <!-- TOP (P3 at a3 side) -->
+      <aside class="player-slot top" id="panel-p3">
+        <div class="player-card">
+          <div class="player-head">
+            <div class="player-name">Player 3</div>
+            <div class="player-sym" id="sym-p3"></div>
+          </div>
+          <div class="token-row" id="tokens-p3"></div>
+          <div class="player-meta" id="home-p3"></div>
+        </div>
+      </aside>
+
+      <!-- LEFT (P4 at c1 side) -->
+      <aside class="player-slot left" id="panel-p4">
+        <div class="player-card">
+          <div class="player-head">
+            <div class="player-name">Player 4</div>
+            <div class="player-sym" id="sym-p4"></div>
+          </div>
+          <div class="token-row" id="tokens-p4"></div>
+          <div class="player-meta" id="home-p4"></div>
+        </div>
+      </aside>
+
+      <!-- CENTER BOARD -->
+      <section class="board-card">
+        <div class="hud">
+          <div class="status" id="status">Loading…</div>
+          <div class="hud-actions">
+            <button id="rollBtn" class="btn primary" type="button">Roll Cowries</button>
+            <button id="endTurnBtn" class="btn" type="button" disabled>End Turn</button>
+          </div>
+        </div>
+
+        <table class="board">
+          <tbody>
+            <tr>
+              <td><input type="text" id="a1" value="a1" readonly /></td>
+              <td><input type="text" id="a2" value="a2" readonly /></td>
+              <td><input type="text" id="a3" value="a3" readonly /></td>
+              <td><input type="text" id="a4" value="a4" readonly /></td>
+              <td><input type="text" id="a5" value="a5" readonly /></td>
+            </tr>
+
+            <tr>
+              <td><input type="text" id="b1" value="b1" readonly /></td>
+              <td><input type="text" id="b2" value="b2" readonly /></td>
+              <td><input type="text" id="b3" value="b3" readonly /></td>
+              <td><input type="text" id="b4" value="b4" readonly /></td>
+              <td><input type="text" id="b5" value="b5" readonly /></td>
+            </tr>
+
+            <tr>
+              <td><input type="text" id="c1" value="c1" readonly /></td>
+              <td><input type="text" id="c2" value="c2" readonly /></td>
+              <td><input type="text" id="c3" value="c3" readonly /></td>
+              <td><input type="text" id="c4" value="c4" readonly /></td>
+              <td><input type="text" id="c5" value="c5" readonly /></td>
+            </tr>
+
+            <tr>
+              <td><input type="text" id="d1" value="d1" readonly /></td>
+              <td><input type="text" id="d2" value="d2" readonly /></td>
+              <td><input type="text" id="d3" value="d3" readonly /></td>
+              <td><input type="text" id="d4" value="d4" readonly /></td>
+              <td><input type="text" id="d5" value="d5" readonly /></td>
+            </tr>
+
+            <tr>
+              <td><input type="text" id="e1" value="e1" readonly /></td>
+              <td><input type="text" id="e2" value="e2" readonly /></td>
+              <td><input type="text" id="e3" value="e3" readonly /></td>
+              <td><input type="text" id="e4" value="e4" readonly /></td>
+              <td><input type="text" id="e5" value="e5" readonly /></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="footnote">
+          Finish cell: <b>c3</b> (Exact count). Dice values: <b>1,2,3,4,8</b>.
+        </div>
+      </section>
+
+      <!-- RIGHT (P2 at c5 side) -->
+      <aside class="player-slot right" id="panel-p2">
+        <div class="player-card">
+          <div class="player-head">
+            <div class="player-name">Player 2</div>
+            <div class="player-sym" id="sym-p2"></div>
+          </div>
+          <div class="token-row" id="tokens-p2"></div>
+          <div class="player-meta" id="home-p2"></div>
+        </div>
+      </aside>
+
+      <!-- BOTTOM (P1 at e3 side) -->
+      <aside class="player-slot bottom" id="panel-p1">
+        <div class="player-card">
+          <div class="player-head">
+            <div class="player-name">Player 1</div>
+            <div class="player-sym" id="sym-p1"></div>
+          </div>
+          <div class="token-row" id="tokens-p1"></div>
+          <div class="player-meta" id="home-p1"></div>
+        </div>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>
