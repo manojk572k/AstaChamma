@@ -101,7 +101,7 @@ body {
 .title {
   font-size: 20px;
   font-weight: 700;
-  background: linear-gradient(135deg, #ffd966, #b3d9ff);
+  background: linear-gradient(135deg, #d5a924, #3796f6);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -166,7 +166,7 @@ body {
 }
 
 /* Arena – maximize everything, no gaps */
-.arena {
+/* .arena {
   display: grid;
   grid-template-columns: 1fr 2.3fr 1fr;
   grid-template-rows: auto 1fr auto;
@@ -174,12 +174,34 @@ body {
   flex: 1;
   min-height: 0;
   overflow: hidden;
+} */
+
+.arena {
+  display: grid;
+  grid-template-areas:
+    "top top top"
+    "left center right"
+    "bottom bottom bottom";
+  grid-template-columns: 150px 1fr 150px; /* left | center | right */
+  grid-template-rows: 120px 1fr 120px; /* top | center | bottom */
+  gap: 10px;
+  height: 100vh;
+  width: 100vw;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-.player-slot {
+/* .player-slot {
   min-height: 0;
   display: flex;
-}
+} */
+
+.player-slot.top { grid-area: top; }
+.player-slot.left { grid-area: left; }
+.player-slot.right { grid-area: right; }
+.player-slot.bottom { grid-area: bottom; }
+.board-card { grid-area: center; display: flex; flex-direction: column; }
+
 .player-card {
   flex: 1;
   background: var(--card-bg);
@@ -247,7 +269,7 @@ body {
   border-top: 1px dashed var(--border-light);
 }
 
-.board-card {
+/* .board-card {
   background: var(--board-bg);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-light);
@@ -257,6 +279,19 @@ body {
   flex-direction: column;
   overflow: hidden;
   box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+} */
+
+
+.board-card input[type="text"] {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #333;
+}
+
+.board-card .board {
+  margin: auto;
+  border-collapse: collapse;
 }
 
 .hud {
