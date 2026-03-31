@@ -3,119 +3,201 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ashtachamma · Rule Based Board Game</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>" />
   <link rel="stylesheet" href="index.css" />
 </head>
 <body class="theme-dark">
+  <div class="page-shell"></div>
+
   <main class="app">
-    <header class="header">
-      <h1 class="title">⚡ ASHTACHAMMA (Rule Based Game Board) </h1>
-      <div class="header-controls">
-        <div class="theme-switcher">
-          <button class="theme-btn" data-theme="light">☀️</button>
-          <button class="theme-btn" data-theme="dark">🌙</button>
-          <button class="theme-btn" data-theme="modern">✨</button>
+    <header class="header glass-card">
+      <div class="brand">
+        <p class="eyebrow">Traditional board game · polished game UI</p>
+        <h1 class="title">⚡ Ashtachamma</h1>
+        <p class="subtitle">Rule-based 4-token strategy board with safe cells, captures, exact finish, and bonus turns.</p>
+      </div>
+
+      <div class="header-actions">
+        <div class="theme-switcher" aria-label="Theme switcher">
+          <button class="theme-btn active" data-theme="dark" type="button" title="Dark theme">🌙</button>
+          <button class="theme-btn" data-theme="light" type="button" title="Light theme">☀️</button>
+          <button class="theme-btn" data-theme="modern" type="button" title="Modern theme">✨</button>
         </div>
-        <button id="playBtn" class="action-btn play-btn">🎮 PLAY</button>
-        <a href="#" id="aboutBtn" class="action-btn about-btn">📖 ABOUT</a>
+        <button id="playBtn" class="action-btn accent" type="button">🎮 New Game</button>
+        <button id="aboutBtn" class="action-btn" type="button">📖 Rules</button>
       </div>
     </header>
 
-    <section class="arena">
-      <!-- TOP: Player 3 -->
-      <aside class="player-slot top" id="panel-p3">
-        <div class="player-card">
-          <div class="player-head">
-            <div class="player-name">Player 3</div>
-            <div class="player-sym" id="sym-p3"></div>
+    <section class="main-layout">
+      <aside class="left-rail glass-card">
+        <div class="rail-section">
+          <h2>Game Controls</h2>
+          <div class="control-stack">
+            <button id="rollBtn" class="btn primary" type="button">🎲 Roll Cowries</button>
+            <button id="endTurnBtn" class="btn secondary" type="button" disabled>⏭ End Turn</button>
           </div>
-          <div class="token-row" id="tokens-p3"></div>
-          <div class="player-meta" id="home-p3"></div>
+        </div>
+
+        <div class="rail-section">
+          <h2>Status</h2>
+          <div class="status" id="status">🎮 Press New Game to start</div>
+          <div class="roll-pill" id="lastRollPill">Last roll: —</div>
+        </div>
+
+        <div class="rail-section">
+          <h2>Quick Rules</h2>
+          <ul class="rules-list">
+            <li>Start a token only with <strong>4</strong> or <strong>8</strong>.</li>
+            <li>Bonus turn on <strong>4</strong>, <strong>8</strong>, or <strong>capture</strong>.</li>
+            <li>Exact finish required at the center.</li>
+            <li>Three consecutive 4/8 rolls trigger penalty.</li>
+          </ul>
         </div>
       </aside>
 
-      <!-- LEFT: Player 4 -->
-      <aside class="player-slot left" id="panel-p4">
-        <div class="player-card">
-          <div class="player-head">
-            <div class="player-name">Player 4</div>
-            <div class="player-sym" id="sym-p4"></div>
-          </div>
-          <div class="token-row" id="tokens-p4"></div>
-          <div class="player-meta" id="home-p4"></div>
-        </div>
-      </aside>
-
-      <!-- RIGHT: Player 2 -->
-      <aside class="player-slot right" id="panel-p2">
-        <div class="player-card">
-          <div class="player-head">
-            <div class="player-name">Player 2</div>
-            <div class="player-sym" id="sym-p2"></div>
-          </div>
-          <div class="token-row" id="tokens-p2"></div>
-          <div class="player-meta" id="home-p2"></div>
-        </div>
-      </aside>
-
-      <!-- BOTTOM: Player 1 -->
-      <aside class="player-slot bottom" id="panel-p1">
-        <div class="player-card">
-          <div class="player-head">
-            <div class="player-name">Player 1</div>
-            <div class="player-sym" id="sym-p1"></div>
-          </div>
-          <div class="token-row" id="tokens-p1"></div>
-          <div class="player-meta" id="home-p1"></div>
-        </div>
-      </aside>
-
-      <!-- CENTER BOARD – 5x5 grid with seamless squares -->
-      <section class="board-card">
-        <div class="hud">
-          <div class="status" id="status">🎮 Press PLAY to start</div>
-          <div class="hud-actions">
-            <button id="rollBtn" class="btn primary" type="button">🎲 Roll</button>
-            <button id="endTurnBtn" class="btn" type="button" disabled>⏭ End</button>
-          </div>
+      <section class="board-zone">
+        <div class="player-strip top-strip">
+          <aside class="player-slot" id="panel-p3">
+            <div class="player-card glass-card">
+              <div class="player-head">
+                <div>
+                  <p class="player-label">Top</p>
+                  <div class="player-name">Player 3</div>
+                </div>
+                <div class="player-sym" id="sym-p3"></div>
+              </div>
+              <div class="token-row" id="tokens-p3"></div>
+              <div class="player-meta" id="home-p3"></div>
+            </div>
+          </aside>
         </div>
 
-        <table class="board">
-          <tbody>
-            <tr><td><input type="text" id="a1" value="" readonly /></td><td><input type="text" id="a2" value="" readonly /></td><td><input type="text" id="a3" value="X" readonly class="safe-cell" /></td><td><input type="text" id="a4" value="" readonly /></td><td><input type="text" id="a5" value="" readonly /></td></tr>
-            <tr><td><input type="text" id="b1" value="" readonly /></td><td><input type="text" id="b2" value="" readonly /></td><td><input type="text" id="b3" value="" readonly /></td><td><input type="text" id="b4" value="" readonly /></td><td><input type="text" id="b5" value="" readonly /></td></tr>
-            <tr><td><input type="text" id="c1" value="X" readonly class="safe-cell" /></td><td><input type="text" id="c2" value="" readonly /></td><td><input type="text" id="c3" value="X" readonly class="finish-cell safe-cell" /></td><td><input type="text" id="c4" value="" readonly /></td><td><input type="text" id="c5" value="X" readonly class="safe-cell" /></td></tr>
-            <tr><td><input type="text" id="d1" value="" readonly /></td><td><input type="text" id="d2" value="" readonly /></td><td><input type="text" id="d3" value="" readonly /></td><td><input type="text" id="d4" value="" readonly /></td><td><input type="text" id="d5" value="" readonly /></td></tr>
-            <tr><td><input type="text" id="e1" value="" readonly /></td><td><input type="text" id="e2" value="" readonly /></td><td><input type="text" id="e3" value="X" readonly class="safe-cell" /></td><td><input type="text" id="e4" value="" readonly /></td><td><input type="text" id="e5" value="" readonly /></td></tr>
-          </tbody>
-        </table>
+        <div class="middle-lane">
+          <aside class="player-column left-column">
+            <div class="player-slot" id="panel-p4">
+              <div class="player-card glass-card vertical-card">
+                <div class="player-head">
+                  <div>
+                    <p class="player-label">Left</p>
+                    <div class="player-name">Player 4</div>
+                  </div>
+                  <div class="player-sym" id="sym-p4"></div>
+                </div>
+                <div class="token-row vertical" id="tokens-p4"></div>
+                <div class="player-meta" id="home-p4"></div>
+              </div>
+            </div>
+          </aside>
 
-        <div class="footnote">
-          ⚡ Finish: <b>c3</b> · Dice 1,2,3,4,8 · extra on 4/8 or capture
+          <section class="board-card glass-card">
+            <div class="board-topbar">
+              <div class="legend">
+                <span class="legend-item"><span class="legend-dot safe"></span> Safe Cell</span>
+                <span class="legend-item"><span class="legend-dot finish"></span> Finish</span>
+                <span class="legend-item"><span class="legend-dot active"></span> Current Turn</span>
+              </div>
+              <div class="center-note">Finish at <strong>c3</strong> · Dice values: <strong>1, 2, 3, 4, 8</strong></div>
+            </div>
+
+            <div class="board-wrapper">
+              <table class="board" aria-label="Ashtachamma board">
+                <tbody>
+                  <tr><td><input type="text" id="a1" value="" readonly /></td><td><input type="text" id="a2" value="" readonly /></td><td><input type="text" id="a3" value="X" readonly class="safe-cell" /></td><td><input type="text" id="a4" value="" readonly /></td><td><input type="text" id="a5" value="" readonly /></td></tr>
+                  <tr><td><input type="text" id="b1" value="" readonly /></td><td><input type="text" id="b2" value="" readonly /></td><td><input type="text" id="b3" value="" readonly /></td><td><input type="text" id="b4" value="" readonly /></td><td><input type="text" id="b5" value="" readonly /></td></tr>
+                  <tr><td><input type="text" id="c1" value="X" readonly class="safe-cell" /></td><td><input type="text" id="c2" value="" readonly /></td><td><input type="text" id="c3" value="X" readonly class="finish-cell safe-cell" /></td><td><input type="text" id="c4" value="" readonly /></td><td><input type="text" id="c5" value="X" readonly class="safe-cell" /></td></tr>
+                  <tr><td><input type="text" id="d1" value="" readonly /></td><td><input type="text" id="d2" value="" readonly /></td><td><input type="text" id="d3" value="" readonly /></td><td><input type="text" id="d4" value="" readonly /></td><td><input type="text" id="d5" value="" readonly /></td></tr>
+                  <tr><td><input type="text" id="e1" value="" readonly /></td><td><input type="text" id="e2" value="" readonly /></td><td><input type="text" id="e3" value="X" readonly class="safe-cell" /></td><td><input type="text" id="e4" value="" readonly /></td><td><input type="text" id="e5" value="" readonly /></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <aside class="player-column right-column">
+            <div class="player-slot" id="panel-p2">
+              <div class="player-card glass-card vertical-card">
+                <div class="player-head">
+                  <div>
+                    <p class="player-label">Right</p>
+                    <div class="player-name">Player 2</div>
+                  </div>
+                  <div class="player-sym" id="sym-p2"></div>
+                </div>
+                <div class="token-row vertical" id="tokens-p2"></div>
+                <div class="player-meta" id="home-p2"></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="player-strip bottom-strip">
+          <aside class="player-slot" id="panel-p1">
+            <div class="player-card glass-card">
+              <div class="player-head">
+                <div>
+                  <p class="player-label">Bottom</p>
+                  <div class="player-name">Player 1</div>
+                </div>
+                <div class="player-sym" id="sym-p1"></div>
+              </div>
+              <div class="token-row" id="tokens-p1"></div>
+              <div class="player-meta" id="home-p1"></div>
+            </div>
+          </aside>
         </div>
       </section>
     </section>
+  </main>
 
-    <!-- About Modal -->
-    <div id="aboutModal" class="modal">
-      <div class="modal-content">
-        <h2>🎲 Ashtachamma · Rule Based Game</h2>
-        <p>Classic Indian board game with modern twist. Features:</p>
-        <ul>
-          <li>Select number of players (1-4) and who starts</li>
-          <li>Dice: 1,2,3,4,8 – start only on 4/8</li>
-          <li>Extra turn on 4/8 or capture</li>
-          <li>Exact finish at centre cell (c3)</li>
-          <li>Penalty after three consecutive 4/8</li>
-          <li>Safe cells: a3, c1, c5, e3 (marked X)</li>
-          <li>Three colour themes – use switcher above</li>
-        </ul>
-        <button class="close-modal" id="closeAbout">Close</button>
+  <div id="aboutModal" class="modal">
+    <div class="modal-content glass-card">
+      <div class="modal-header">
+        <h2>📖 Ashtachamma Rules</h2>
+        <button class="icon-close" id="closeAbout" type="button">✕</button>
+      </div>
+      <ul class="modal-list">
+        <li>Choose 1 to 4 active players and set the starting player.</li>
+        <li>Only rolls of 4 or 8 can bring a token out of home.</li>
+        <li>Landing on an enemy token captures it unless the cell is safe.</li>
+        <li>Safe cells are marked with <strong>X</strong>.</li>
+        <li>You must land exactly on the center finish cell.</li>
+        <li>Three consecutive 4/8 rolls cause a penalty.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="setupModal" class="modal active">
+    <div class="modal-content setup-modal glass-card">
+      <h2>🎮 Start New Game</h2>
+      <p class="setup-copy">Pick the active players and decide who takes the first turn.</p>
+
+      <div class="form-grid">
+        <label>
+          <span>Number of players</span>
+          <select id="playerCountSelect">
+            <option value="1">1 Player</option>
+            <option value="2" selected>2 Players</option>
+            <option value="3">3 Players</option>
+            <option value="4">4 Players</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Starting player</span>
+          <select id="startPlayerSelect"></select>
+        </label>
+      </div>
+
+      <div class="player-picker" id="playerPicker"></div>
+
+      <div class="setup-actions">
+        <button id="startGameBtn" class="btn primary" type="button">Start Game</button>
+        <button id="cancelSetupBtn" class="btn secondary" type="button">Close</button>
       </div>
     </div>
-  </main>
+  </div>
+
   <script src="index.js"></script>
 </body>
 </html>
